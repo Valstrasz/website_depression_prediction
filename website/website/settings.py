@@ -21,16 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(
     os.environ.get("DEBUG",
                    default = False) )
 
-ALLOWED_HOSTS = [
-    os.environ.get("DJANGO_ALLOWED_HOSTS",
-                   default = "127.0.0.1").split(",") ]
+# ALLOWED_HOSTS = [
+#     os.environ.get("DJANGO_ALLOWED_HOSTS",
+#                    default = "default_host").split(",") ]
+ALLOWED_HOSTS = [ os.environ.get("DJANGO_ALLOWED_HOSTS",
+                                 default = "default_host") ]
 
 
 # Application definition
@@ -78,12 +80,13 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT")
+        "ENGINE": 'django.db.backends.{}'.format(
+            os.environ.get("DB_ENGINE", "sqlite3") ),
+        "NAME": os.environ.get("DB_NAME", "default_name"),
+        "USER": os.environ.get("DB_USERNAME", "default_username"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "default_password"),
+        "HOST": os.environ.get("DB_HOST", "default_host"),
+        "PORT": os.environ.get("DB_PORT", "default_port")
     }
 }
 
