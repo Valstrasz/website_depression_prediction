@@ -1,6 +1,6 @@
 services:
   database:
-    container_name: postgresql
+    container_name: database_postgresql
     image: postgres:18.6
     environment:
       POSTGRES_DB: ${DB_NAME}
@@ -10,13 +10,20 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
-      - ./_init/database:/docker-entrypoint-initdb.d
+      - ./database:/docker-entrypoint-initdb.d
     env_file:
       - .env
 
+
+  estimator:
+    container_name: estimator_depression
+    build: ./estimator
+    ports:
+      - "7777:7777"
+
   website:
-    build: .
-    container_name: django
+    container_name: website_django
+    build: ./website
     ports:
       - "8000:8000"
     depends_on:
