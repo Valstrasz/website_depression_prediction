@@ -77,7 +77,7 @@ CREATE TABLE sample (
 
 
 
-CREATE TABLE answer (
+CREATE TABLE prediction (
     id
         INTEGER
             GENERATED ALWAYS AS IDENTITY,
