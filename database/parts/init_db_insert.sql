@@ -15,7 +15,7 @@ INSERT INTO sample
         false);
 
 
-INSERT INTO answer
+INSERT INTO prediction
     (date, gender, age, city, cgpa, profession, profession_pressure, profession_satisfaction, sleep_duration,
         dietary_habits, degree, history_thoughts_suicidal, profession_hour_daily, financial_stress, history_family_illness_mental,
         depression, confidence)

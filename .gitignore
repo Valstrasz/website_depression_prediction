@@ -6,4 +6,7 @@ _OLD
 # Virtual environment
 _venv*
 
+# Cache
+__pycache__
+
 # notebook*

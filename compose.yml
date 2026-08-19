@@ -15,11 +15,14 @@ services:
       - .env
 
 
-  estimator:
-    container_name: estimator_depression
-    build: ./estimator
+  predictor:
+    container_name: predictor_sklearn
+    build: ./predictor
     ports:
-      - "7777:7777"
+      - "5000:5000"
+    environment:
+      API_POST_PREDICT: ${AI_API_POST_PREDICT}
+      LOL: "COUCOU!"
 
   website:
     container_name: website_django
@@ -28,6 +31,7 @@ services:
       - "8000:8000"
     depends_on:
       - database
+      - predictor
     environment:
       DEBUG: ${DEBUG}
 
