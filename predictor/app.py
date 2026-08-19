@@ -41,7 +41,6 @@ API_POST_PREDICT = environ.get("API_POST_PREDICT") # "/predict", in ".env"
 @app.post(API_POST_PREDICT,
          tags = ["prediction"])
 async def post_prediction(datamodel_info: DatamodelInfo) -> dict:
-    print(environ.get("LOL"))
     info: pd.DataFrame = pd.DataFrame(
         data = [list(datamodel_info.model_dump().values())],
         columns = list(datamodel_info.model_dump().keys()) )

@@ -22,7 +22,6 @@ services:
       - "5000:5000"
     environment:
       API_POST_PREDICT: ${AI_API_POST_PREDICT}
-      LOL: "COUCOU!"
 
   website:
     container_name: website_django
