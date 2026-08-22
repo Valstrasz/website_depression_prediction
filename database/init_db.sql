@@ -16,3 +16,8 @@
 
 -- INSERT samples
 \ir :subdir_parts/init_db_insert.sql
+
+
+
+-- CREATE roles (groups / users)
+\ir :subdir_parts/init_db_role.sql

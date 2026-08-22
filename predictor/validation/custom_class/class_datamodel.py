@@ -22,27 +22,34 @@ class DatamodelInfo(BaseModel):
 
     # Required
     gender: TypeGender
-    age: int = Field(...,
-                     ge = 0)
-    city: str = Field(...,
-                      max_length = 50)
-    cgpa: float = Field(...,
-                        ge = 0.0,
-                        le = 10.0)
+    age: int = Field(
+        ...,
+        ge = 0 )
+    city: str = Field(
+        ...,
+        max_length = 50 )
+    cgpa: float = Field(
+        ...,
+        ge = 0.0,
+        le = 10.0 )
     degree: TypeDegree
     profession: TypeProfession
-    profession_hour_daily: int = Field(...,
-                                       ge = 0,
-                                       le = 24)
-    profession_pressure: int = Field(...,
-                                     ge = 0,
-                                     le = 5)
-    profession_satisfaction: int = Field(...,
-                                         ge = 0,
-                                         le = 5)
-    financial_stress: int = Field(...,
-                                  ge = 0,
-                                  le = 5)
+    profession_hour_daily: int = Field(
+        ...,
+        ge = 0,
+        le = 24 )
+    profession_pressure: int = Field(
+        ...,
+        ge = 0,
+        le = 5 )
+    profession_satisfaction: int = Field(
+        ...,
+        ge = 0,
+        le = 5 )
+    financial_stress: int = Field(
+        ...,
+        ge = 0,
+        le = 5 )
     sleep_duration: TypeSleepDuration
     dietary_habits: TypeDietaryHabits
     history_family_illness_mental: bool
@@ -59,6 +66,7 @@ class DatamodelPrediction(DatamodelInfo):
 
     # Target
     depression: bool
-    confidence: float = Field(...,
-                              ge = 0.0,
-                              le = 100.0)
+    confidence: float = Field(
+        ...,
+        ge = 0.0,
+        le = 100.0 )

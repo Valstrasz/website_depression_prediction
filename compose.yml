@@ -23,6 +23,9 @@ services:
     environment:
       API_POST_PREDICT: ${AI_API_POST_PREDICT}
 
+      DIR_MODEL_SELECTED: ${AI_DIR_MODEL_SELECTED}
+
+
   website:
     container_name: website_django
     build: ./website
@@ -38,14 +41,15 @@ services:
       DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
 
-      DATABASE_ENGINE: ${DB_ENGINE}
-      DATABASE_NAME: ${DB_NAME}
-      DATABASE_USERNAME: ${DB_USERNAME}
-      DATABASE_PASSWORD: ${DB_PASSWORD}
-      DATABASE_HOST: ${DB_HOST}
-      DATABASE_PORT: ${DB_PORT}
+      DATABASE_ENGINE: ${DJANGO_DB_ENGINE}
+      DATABASE_NAME: ${DJANGO_DB_NAME}
+      DATABASE_USERNAME: ${DJANGO_DB_USERNAME}
+      DATABASE_PASSWORD: ${DJANGO_DB_PASSWORD}
+      DATABASE_HOST: ${DJANGO_DB_HOST}
+      DATABASE_PORT: ${DJANGO_DB_PORT}
     env_file:
       - .env
       
+
 volumes:
   postgres_data:

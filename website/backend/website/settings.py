@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(
-    os.environ.get("DEBUG",
-                   default = False) )
+DEBUG = bool( os.environ.get(
+    "DEBUG",
+    default = False ) )
 
 # ALLOWED_HOSTS = [
 #     os.environ.get("DJANGO_ALLOWED_HOSTS",
@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": 'django.db.backends.{}'.format(
-            os.environ.get("DB_ENGINE", "sqlite3") ),
-        "NAME": os.environ.get("DB_NAME", "default_name"),
-        "USER": os.environ.get("DB_USERNAME", "default_username"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "default_password"),
-        "HOST": os.environ.get("DB_HOST", "default_host"),
-        "PORT": os.environ.get("DB_PORT", "default_port")
+            os.environ.get("DJANGO_DB_ENGINE", "sqlite3") ),
+        "NAME": os.environ.get("DJANGO_DB_NAME", "default_name"),
+        "USER": os.environ.get("DJANGO_DB_USERNAME", "default_username"),
+        "PASSWORD": os.environ.get("DJANGO_DB_PASSWORD", "default_password"),
+        "HOST": os.environ.get("DJANGO_DB_HOST", "default_host"),
+        "PORT": os.environ.get("DJANGO_DB_PORT", "default_port")
     }
 }
 

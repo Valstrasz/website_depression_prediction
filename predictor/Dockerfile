@@ -8,19 +8,22 @@ ENV PYTHONUNBUFFERED=1
 # Create the app directory
 RUN mkdir /app_predictor
 # Set the working directory
-WORKDIR /app_predictor
+WORKDIR /app_predictor 
  
 # Copy the requirements file
-COPY requirements.txt /app_predictor/
- 
+COPY requirements.txt .
 # Upgrade pip
 RUN pip install --upgrade pip
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files into the image
-COPY . .
+COPY --exclude="./_MODEL" . .
 
+# Create a folder to store the model to be used in the image
+RUN mkdir -p ./_MODEL ./_MODEL/selected ./_MODEL/version
+# Copy the model into the image
+COPY ./_MODEL/selected ./_MODEL/selected
 
 
 # Expose the application port
