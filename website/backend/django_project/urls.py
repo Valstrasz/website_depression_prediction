@@ -1,5 +1,5 @@
 """
-URL configuration for website project.
+URL configuration for django_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -16,9 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-
-from . import views
+from django.urls import path, include
 
 
 
@@ -27,7 +25,6 @@ urlpatterns = [
         route = "admin/",
         view = admin.site.urls ),
     path(
-        route = "",
-        view = views.index,
-        name = "index")
+        route = "django_app/",
+        view = include("django_app.urls") )
 ]

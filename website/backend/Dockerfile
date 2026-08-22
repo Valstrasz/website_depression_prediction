@@ -1,5 +1,5 @@
 # Stage 1: Base build stage
-FROM python:3.14.6-slim AS app_website_stage_build
+FROM python:3.14.6-slim AS stage_build_app_website_backend
 
 # Set environment variables to optimize Python
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -26,7 +26,7 @@ COPY . .
 EXPOSE 8000
  
 # Start the application using Gunicorn (WSGI)
-CMD ["gunicorn", "website.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]
+CMD ["gunicorn", "django_project.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]
 
 
 

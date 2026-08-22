@@ -10,3 +10,10 @@ _venv*
 __pycache__
 
 # notebook*
+
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
