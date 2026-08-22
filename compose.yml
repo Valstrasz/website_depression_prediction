@@ -26,9 +26,11 @@ services:
       DIR_MODEL_SELECTED: ${AI_DIR_MODEL_SELECTED}
 
 
-  website:
-    container_name: website_django
-    build: ./website
+  website_backend:
+    container_name: website_backend
+    build: ./website/backend
+    volumes:
+      - ./website/backend:/app_website
     ports:
       - "8000:8000"
     depends_on:
@@ -49,7 +51,37 @@ services:
       DATABASE_PORT: ${DJANGO_DB_PORT}
     env_file:
       - .env
+
+
+  website_frontend:
+    container_name: website_frontend
+    build: ./website/frontend
+    volumes:
+      - ./website/frontend:/app_website
+      - frontend_module:/app_website/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - database
+      - predictor
+    environment:
+      DEBUG: ${DEBUG}
+
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
+
+      DATABASE_ENGINE: ${DJANGO_DB_ENGINE}
+      DATABASE_NAME: ${DJANGO_DB_NAME}
+      DATABASE_USERNAME: ${DJANGO_DB_USERNAME}
+      DATABASE_PASSWORD: ${DJANGO_DB_PASSWORD}
+      DATABASE_HOST: ${DJANGO_DB_HOST}
+      DATABASE_PORT: ${DJANGO_DB_PORT}
+    env_file:
+      - .env
+    stdin_open: true
       
 
 volumes:
   postgres_data:
+  frontend_module:
