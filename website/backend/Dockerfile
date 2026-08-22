@@ -12,7 +12,6 @@ WORKDIR /app_website
 
 # Copy the requirements file
 COPY requirements.txt /app_website/
- 
 # Upgrade pip
 RUN pip install --upgrade pip 
 # Install Python dependencies

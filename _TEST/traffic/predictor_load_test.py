@@ -15,15 +15,16 @@ test: dict = {
     "sleep_duration": "Less than 5 hours",
     "dietary_habits": "Unhealthy",
     "history_family_illness_mental": True,
-    "history_thoughts_suicidal": True
-}
+    "history_thoughts_suicidal": True }
 
 
 class DepressionPredict(TaskSet):
     @task
     def predict(self):
         request_body = test
-        self.client.post('/predict', json=request_body)
+        self.client.post(
+            '/predict',
+            json = request_body )
 
 
 class DepressionLoadTest(HttpUser):

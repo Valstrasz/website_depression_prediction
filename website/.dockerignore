@@ -1,0 +1,12 @@
+_OLD
+
+# Environment variables
+.env
+
+# Virtual environment
+_venv*
+
+# Cache
+__pycache__
+
+# notebook*
