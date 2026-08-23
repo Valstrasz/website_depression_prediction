@@ -1,90 +1,90 @@
--- Creation of 'GROUPs'
--- Creation of 'GROUPs'
--- Creation of 'GROUPs'
--- group_superuser
-CREATE ROLE
-    group_superuser
-WITH
-    SUPERUSER;
+-- -- Creation of 'GROUPs'
+-- -- Creation of 'GROUPs'
+-- -- Creation of 'GROUPs'
+-- -- group_superuser
+-- CREATE ROLE
+--     group_superuser
+-- WITH
+--     SUPERUSER;
 
-GRANT
-    ALL PRIVILEGES
-        ON DATABASE
-            database_depression, postgres
-TO
-    group_superuser;
-GRANT
-    -- CONNECT, SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, REFERENCES
-    ALL PRIVILEGES
-        ON ALL TABLES IN SCHEMA public
-TO
-    group_superuser;
-
-
--- group_admin
-CREATE ROLE
-    group_admin
-WITH
-    NOSUPERUSER
-    CREATEDB
-    CREATEROLE;
-
-GRANT
-    ALL PRIVILEGES
-        ON DATABASE
-            database_depression
-TO
-    group_admin;
-GRANT
-    ALL PRIVILEGES
-        ON TABLE
-            prediction, sample
-TO
-    group_admin;
+-- GRANT
+--     ALL PRIVILEGES
+--         ON DATABASE
+--             database_depression, postgres
+-- TO
+--     group_superuser;
+-- GRANT
+--     -- CONNECT, SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, REFERENCES
+--     ALL PRIVILEGES
+--         ON ALL TABLES IN SCHEMA public
+-- TO
+--     group_superuser;
 
 
--- group_engineer
-CREATE ROLE
-    group_engineer
-WITH
-    NOSUPERUSER
-    NOCREATEDB
-    NOCREATEROLE;
+-- -- group_admin
+-- CREATE ROLE
+--     group_admin
+-- WITH
+--     NOSUPERUSER
+--     CREATEDB
+--     NOCREATEROLE;
 
-GRANT
-    CONNECT
-        ON DATABASE
-            database_depression
-TO
-    group_engineer;
-GRANT
-    SELECT, INSERT, UPDATE, DELETE
-        ON TABLE
-            prediction, sample
-TO
-    group_engineer;
+-- GRANT
+--     ALL PRIVILEGES
+--         ON DATABASE
+--             database_depression
+-- TO
+--     group_admin;
+-- GRANT
+--     ALL PRIVILEGES
+--         ON TABLE
+--             prediction, sample
+-- TO
+--     group_admin;
 
 
--- group_analyst
-CREATE ROLE
-    group_analyst
-WITH
-    NOSUPERUSER
-    NOCREATEDB
-    NOCREATEROLE;
+-- -- group_engineer
+-- CREATE ROLE
+--     group_engineer
+-- WITH
+--     NOSUPERUSER
+--     NOCREATEDB
+--     NOCREATEROLE;
 
-GRANT
-    CONNECT
-        ON DATABASE
-            database_depression
-TO
-    group_analyst;
-GRANT
-    SELECT
-        ON TABLE
-            prediction, sample
-TO
-    group_analyst;
+-- GRANT
+--     CONNECT
+--         ON DATABASE
+--             database_depression
+-- TO
+--     group_engineer;
+-- GRANT
+--     SELECT, INSERT, UPDATE, DELETE
+--         ON TABLE
+--             prediction, sample
+-- TO
+--     group_engineer;
+
+
+-- -- group_analyst
+-- CREATE ROLE
+--     group_analyst
+-- WITH
+--     NOSUPERUSER
+--     NOCREATEDB
+--     NOCREATEROLE;
+
+-- GRANT
+--     CONNECT
+--         ON DATABASE
+--             database_depression
+-- TO
+--     group_analyst;
+-- GRANT
+--     SELECT
+--         ON TABLE
+--             prediction, sample
+-- TO
+--     group_analyst;
 
 
 
@@ -96,10 +96,19 @@ CREATE ROLE
     superuser
 WITH
     LOGIN
-    PASSWORD 'Root_M3!';
+    PASSWORD 'Root_M3!'
+    SUPERUSER;
 
 GRANT
-    group_superuser
+    ALL PRIVILEGES
+        ON DATABASE
+            database_depression, postgres
+TO
+    superuser;
+GRANT
+    -- CONNECT, SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, REFERENCES
+    ALL PRIVILEGES
+        ON ALL TABLES IN SCHEMA public
 TO
     superuser;
 
@@ -109,10 +118,21 @@ CREATE ROLE
     admin
 WITH
     LOGIN
-    PASSWORD '123cba';
+    PASSWORD '123cba'
+    NOSUPERUSER
+    CREATEDB
+    NOCREATEROLE;
 
 GRANT
-    group_admin
+    ALL PRIVILEGES
+        ON DATABASE
+            database_depression
+TO
+    admin;
+GRANT
+    ALL PRIVILEGES
+        ON TABLE
+            prediction, sample
 TO
     admin;
 
@@ -122,10 +142,21 @@ CREATE ROLE
     engineer_a
 WITH
     LOGIN
-    PASSWORD 'pwd_engineer_a';
+    PASSWORD 'pwd_engineer_a'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE;
 
 GRANT
-    group_engineer
+    CONNECT
+        ON DATABASE
+            database_depression
+TO
+    engineer_a;
+GRANT
+    SELECT, INSERT, UPDATE, DELETE
+        ON TABLE
+            prediction, sample
 TO
     engineer_a;
 
@@ -135,10 +166,21 @@ CREATE ROLE
     engineer_b
 WITH
     LOGIN
-    PASSWORD 'pwd_engineer_b';
+    PASSWORD 'pwd_engineer_b'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE;
 
 GRANT
-    group_engineer
+    CONNECT
+        ON DATABASE
+            database_depression
+TO
+    engineer_b;
+GRANT
+    SELECT, INSERT, UPDATE, DELETE
+        ON TABLE
+            prediction, sample
 TO
     engineer_b;
 
@@ -148,10 +190,21 @@ CREATE ROLE
     analyst_a
 WITH
     LOGIN
-    PASSWORD 'pwd_analyst_a';
+    PASSWORD 'pwd_analyst_a'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE;
 
 GRANT
-    group_analyst
+    CONNECT
+        ON DATABASE
+            database_depression
+TO
+    analyst_a;
+GRANT
+    SELECT
+        ON TABLE
+            prediction, sample
 TO
     analyst_a;
 
@@ -161,9 +214,20 @@ CREATE ROLE
     analyst_b
 WITH
     LOGIN
-    PASSWORD 'pwd_analyst_b';
+    PASSWORD 'pwd_analyst_b'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE;
 
 GRANT
-    group_analyst
+    CONNECT
+        ON DATABASE
+            database_depression
+TO
+    analyst_b;
+GRANT
+    SELECT
+        ON TABLE
+            prediction, sample
 TO
     analyst_b;

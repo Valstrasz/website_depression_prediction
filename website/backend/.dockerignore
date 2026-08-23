@@ -1,7 +1,7 @@
-_OLD
+_OLD*
 
 # Environment variables
-.env
+.env*
 
 # Virtual environment
 _venv*
