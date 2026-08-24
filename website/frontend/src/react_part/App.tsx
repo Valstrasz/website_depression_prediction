@@ -253,7 +253,7 @@ function App() {
                         onChange={(e) => setEntryFetch_Id(Number(e.target.value))}
                     />
                     <button className="hover_button" onClick={() => fetchEntry(entryFetch_Id)}>
-                        Get entry
+                        Fetch entry
                     </button>
                     
                     <h3 className="centered">
