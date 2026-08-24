@@ -50,9 +50,9 @@ function App() {
     const [entryToCreate, setEntryToCreate] = useState(dict_databaseEntry);
     const [entryPredictorCreated, setEntryPredictorCreated] = useState({});
     const [entryManuallyCreated, setEntryManuallyCreated] = useState({});
-    const [entryRead, setEntryRead] = useState({});
-    const [entryRead_Id, setEntryRead_Id] = useState(0);
-    
+    const [entryFetch, setEntryFetch] = useState({});
+    const [entryFetch_Id, setEntryFetch_Id] = useState(0);
+
 
 
     // useEffect(
@@ -114,10 +114,10 @@ function App() {
 
 
 
-    const readEntry = async (entry_id: number) => {
+    const fetchEntry = async (entry_id: number) => {
         const result = await axios.get(`${URL_API_DB_PREDICTION}/${entry_id}`);
 
-        setEntryRead(result.data);
+        setEntryFetch(result.data);
 
         return result.data;
     };
@@ -242,17 +242,17 @@ function App() {
 
 
 
-                {/* GET ENTRY */}
+                {/* FETCH ENTRY */}
                 <div className="unit_function">
                     <h2 className="centered">
-                        Get an entry from the database
+                        Fetch an entry from the database
                     </h2>
                     <input className="input_id focus_input"
                         type="text"
                         defaultValue="0"
-                        onChange={(e) => setEntryRead_Id(Number(e.target.value))}
+                        onChange={(e) => setEntryFetch_Id(Number(e.target.value))}
                     />
-                    <button className="hover_button" onClick={() => readEntry(entryRead_Id)}>
+                    <button className="hover_button" onClick={() => fetchEntry(entryFetch_Id)}>
                         Get entry
                     </button>
                     
@@ -260,7 +260,7 @@ function App() {
                         Entry found in the database
                     </h3>
                     <pre className="display_json entry_database">
-                        {JSON.stringify(entryRead, null, "  ")}
+                        {JSON.stringify(entryFetch, null, "  ")}
                     </pre>
                 </div>
             </div>
