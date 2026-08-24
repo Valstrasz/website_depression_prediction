@@ -38,21 +38,21 @@ const dict_databaseEntry = {
     "history_family_illness_mental": true,
     "history_thoughts_suicidal": true,
     "depression": true,
-    "confidence": 0.777 }
+    "confidence": 77.7 }
 
 
 
 function App() {
     // Predictor
-    const [predictorInput, setPredictorInput] = useState({});
+    const [predictorInput, setPredictorInput] = useState(dict_predictorInput);
     const [predictorResult, setPredictorResult] = useState({});
     // Database
-    const [entryToCreate, setEntryToCreate] = useState({});
+    const [entryToCreate, setEntryToCreate] = useState(dict_databaseEntry);
     const [entryPredictorCreated, setEntryPredictorCreated] = useState({});
     const [entryManuallyCreated, setEntryManuallyCreated] = useState({});
     const [entryRead, setEntryRead] = useState({});
     const [entryRead_Id, setEntryRead_Id] = useState(0);
-
+    
 
 
     // useEffect(
