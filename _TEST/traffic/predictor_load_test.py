@@ -29,6 +29,6 @@ class DepressionPredict(TaskSet):
 
 class DepressionLoadTest(HttpUser):
     tasks = [DepressionPredict]
-    host = "http://localhost:5000"
+    host = "http://localhost:8000"
     stop_timeout = 20
     wait_time = between(1, 5)
