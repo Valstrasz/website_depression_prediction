@@ -1,5 +1,5 @@
 # Stage 1: Base build stage
-FROM python:3.14.6-slim AS stage_build_app_website_backend
+FROM node:24-slim AS stage_build_app_website_backend
 
 # Set environment variables to optimize Python
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -11,11 +11,9 @@ RUN mkdir /app_website
 WORKDIR /app_website
 
 # Copy the requirements file
-COPY requirements.txt /app_website/
-# Upgrade pip
-RUN pip install --upgrade pip 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package*.json /app_website/
+# Install Node dependencies
+RUN npm ci
 
 # Copy the project files into the image
 COPY . .
@@ -23,10 +21,10 @@ COPY . .
 
 
 # Expose the application port
-EXPOSE 8000
+EXPOSE 5000
  
-# Start the application using Gunicorn (WSGI)
-CMD ["gunicorn", "django_project.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]
+# Start the application
+CMD ["node", "src/index.js"]
 
 
 

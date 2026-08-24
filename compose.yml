@@ -19,7 +19,7 @@ services:
     container_name: predictor_sklearn
     build: ./predictor
     ports:
-      - "5000:5000"
+      - "8000:8000"
     environment:
       API_POST_PREDICT: ${AI_API_POST_PREDICT}
 
@@ -32,16 +32,20 @@ services:
     volumes:
       - ./website/backend:/app_website
     ports:
-      - "8000:8000"
+      - "5000:5000"
     depends_on:
       - database
-      - predictor
     environment:
       DEBUG: ${DEBUG}
 
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
+
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOST: database
 
       DATABASE_ENGINE: ${DJANGO_DB_ENGINE}
       DATABASE_NAME: ${DJANGO_DB_NAME}
@@ -63,9 +67,13 @@ services:
       - "5173:5173"
     depends_on:
       - database
-      - predictor
+      - website_backend
     environment:
       DEBUG: ${DEBUG}
+      
+      VITE_AI_HOST: ${AI_HOST}
+      VITE_AI_PORT: ${AI_PORT}
+      VITE_AI_API_POST_PREDICT: ${AI_API_POST_PREDICT}
 
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}

@@ -14,6 +14,7 @@ from pydantic import (
 from fastapi import (
     FastAPI,
     Body )
+from fastapi.middleware.cors import CORSMiddleware
 from sklearn.pipeline import Pipeline
 import pandas as pd
 
@@ -64,6 +65,13 @@ app: FastAPI = FastAPI(
     version = "1.0",
     lifespan = lifespan_api )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["http://localhost:5173"],
+    allow_methods = ["POST"],
+    allow_headers = ["*"],
+)
+
 
 @app.post(
     API_POST_PREDICT,
@@ -73,8 +81,13 @@ async def post_prediction(datamodel_info: DatamodelInfo) -> dict:
         data = [list(datamodel_info.model_dump().values())],
         columns = list(datamodel_info.model_dump().keys()) )
     
-    prediction = app.predictor.predict(X = info).tolist()
-    prediction_confidence = app.predictor.predict_proba(X = info).tolist()
+    # prediction = app.predictor.predict(X = info).tolist()
+    # prediction_confidence = app.predictor.predict_proba(X = info).tolist()
+    prediction = app.predictor.predict(X = info).tolist()[0]
+    prediction_confidence = app.predictor.predict_proba(X = info).tolist()[0]
+
+    # print(f"prediction\n\t${prediction}")
+    # print(f"prediction_confidence\n\t${prediction_confidence}")
 
     dict_prediction: dict = {
         "prediction": prediction,

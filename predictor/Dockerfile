@@ -27,7 +27,7 @@ COPY ./_MODEL/selected ./_MODEL/selected
 
 
 # Expose the application port
-EXPOSE 5000
+EXPOSE 8000
 
 # Start the application using Gunicorn (ASGI via Uvicorn)
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000", "--workers", "3", "--timeout", "120", "-k", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "-k", "uvicorn.workers.UvicornWorker"]
