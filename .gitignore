@@ -10,3 +10,8 @@ _venv*
 __pycache__
 
 # notebook*
+
+
+
+### INCLUDE these files
+!.env_TEMPLATE
