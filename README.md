@@ -21,7 +21,7 @@ Files to modify :
   2. Change its working directory to [`. (root)`](.), in the project.
   3. Run the command :
      ```
-       docker compose up --build
+     docker compose up --build
      ```
   4. Wait for the containers to be created.
 
