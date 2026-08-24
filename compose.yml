@@ -1,95 +1,82 @@
 services:
-  database:
-    container_name: database_postgresql
-    image: postgres:18.6
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql
-      - ./database:/docker-entrypoint-initdb.d
-    env_file:
-      - .env
+    database:
+        container_name: database_postgresql
+        image: postgres:18.6
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql
+            - ./database:/docker-entrypoint-initdb.d
+        env_file:
+            - .env
+        environment:
+            POSTGRES_DB: ${DB_NAME}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
 
 
-  predictor:
-    container_name: predictor_sklearn
-    build: ./predictor
-    ports:
-      - "8000:8000"
-    environment:
-      API_POST_PREDICT: ${AI_API_POST_PREDICT}
+    predictor:
+        container_name: predictor_sklearn
+        build: ./predictor
+        ports:
+            - "8000:8000"
+        env_file:
+            - .env
+        environment:
+            API_POST_PREDICT: ${AI_API_POST_PREDICT}
 
-      DIR_MODEL_SELECTED: ${AI_DIR_MODEL_SELECTED}
-
-
-  website_backend:
-    container_name: website_backend
-    build: ./website/backend
-    volumes:
-      - ./website/backend:/app_website
-    ports:
-      - "5000:5000"
-    depends_on:
-      - database
-    environment:
-      DEBUG: ${DEBUG}
-
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
-
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_HOST: database
-
-      DATABASE_ENGINE: ${DJANGO_DB_ENGINE}
-      DATABASE_NAME: ${DJANGO_DB_NAME}
-      DATABASE_USERNAME: ${DJANGO_DB_USERNAME}
-      DATABASE_PASSWORD: ${DJANGO_DB_PASSWORD}
-      DATABASE_HOST: ${DJANGO_DB_HOST}
-      DATABASE_PORT: ${DJANGO_DB_PORT}
-    env_file:
-      - .env
+            DIR_MODEL_SELECTED: ${AI_DIR_MODEL_SELECTED}
 
 
-  website_frontend:
-    container_name: website_frontend
-    build: ./website/frontend
-    volumes:
-      - ./website/frontend:/app_website
-      - frontend_module:/app_website/node_modules
-    ports:
-      - "5173:5173"
-    depends_on:
-      - database
-      - website_backend
-    environment:
-      DEBUG: ${DEBUG}
-      
-      VITE_AI_HOST: ${AI_HOST}
-      VITE_AI_PORT: ${AI_PORT}
-      VITE_AI_API_POST_PREDICT: ${AI_API_POST_PREDICT}
+    website_backend:
+        container_name: website_backend
+        build: ./website/backend
+        volumes:
+            - ./website/backend:/app_website
+        ports:
+            - "5000:5000"
+        depends_on:
+            - database
+        env_file:
+            - .env
+        environment:
+            DEBUG: ${DEBUG}
 
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
+            POSTGRES_HOST: ${DB_HOST}
+            POSTGRES_DB: ${DB_NAME}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
 
-      DATABASE_ENGINE: ${DJANGO_DB_ENGINE}
-      DATABASE_NAME: ${DJANGO_DB_NAME}
-      DATABASE_USERNAME: ${DJANGO_DB_USERNAME}
-      DATABASE_PASSWORD: ${DJANGO_DB_PASSWORD}
-      DATABASE_HOST: ${DJANGO_DB_HOST}
-      DATABASE_PORT: ${DJANGO_DB_PORT}
-    env_file:
-      - .env
-    stdin_open: true
-      
+            DATABASE_ENGINE: ${DB_ENGINE}
+            DATABASE_HOST: ${DB_HOST}
+            DATABASE_PORT: ${DB_PORT}
+            DATABASE_NAME: ${DB_NAME}
+            DATABASE_USERNAME: ${DB_USERNAME}
+            DATABASE_PASSWORD: ${DB_PASSWORD}
+
+
+    website_frontend:
+        container_name: website_frontend
+        build: ./website/frontend
+        volumes:
+            - ./website/frontend:/app_website
+            - frontend_module:/app_website/node_modules
+        ports:
+            - "5173:5173"
+        depends_on:
+            - database
+            - website_backend
+        stdin_open: true
+        env_file:
+            - .env
+        environment:
+            DEBUG: ${DEBUG}
+
+            VITE_AI_HOST: ${AI_HOST}
+            VITE_AI_PORT: ${AI_PORT}
+            VITE_AI_API_POST_PREDICT: ${AI_API_POST_PREDICT}
+
 
 volumes:
-  postgres_data:
-  frontend_module:
+    postgres_data:
+    frontend_module:

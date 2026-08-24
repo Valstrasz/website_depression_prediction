@@ -1,0 +1,33 @@
+@import "./_variable.css";
+
+
+
+/* @keyframes animation_focus_input {
+    from {background-color: inherit;}
+    to {background-color: var(--HF2_white);}
+}
+
+
+@keyframes animation_hover_button {
+    from {background-color: inherit;}
+    to {background-color: var(--gray_light);}
+} */
+
+
+
+.focus_input {
+    transition: background-color 0.5s linear;
+
+    &:focus {
+        background-color: var(--HF2_white);
+    }
+}
+
+
+.hover_button {
+    transition: background-color 0.5s linear;
+
+    &:hover {
+        background-color: var(--gray_light);
+    }
+}
