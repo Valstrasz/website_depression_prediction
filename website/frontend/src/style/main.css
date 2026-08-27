@@ -8,6 +8,11 @@
 
 
 
+h2 {
+    padding: 0 1em;
+}
+
+
 textarea {
     background-color: var(--orange_light);
     color: var(--HF2_black);
@@ -88,14 +93,17 @@ input {
 
 
 .group_unit_function {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-    box-sizing: border-box;
+    gap: 1em;
     /* text-align: center; */
 
-    width: 90%;
+    width: 100%;
+
+    padding: 1em;
 }
 
 
@@ -105,8 +113,14 @@ input {
     justify-content: center;
     align-items: center;
 
+    background-color:  var(--gray_darker);
+
     height: auto;
     width: 100%;
+
+    padding: 1em 3em;
+
+    border-radius: 0.5rem;
 }
 
 
