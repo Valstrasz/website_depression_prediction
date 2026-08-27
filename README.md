@@ -12,7 +12,11 @@ Softwares to install :
 ## **Setup**
 Files to modify :
 - In [`. (root)`](.):
+<<<<<<< HEAD
   - In [`.env_TEMPLATE`](.env_TEMPLATE), replace :
+=======
+  - Copy [`.env_TEMPLATE`](.env_TEMPLATE), rename it `.env` and replace :
+>>>>>>> a99e1122646bb53c4f86ee423ec21ae9a453acf5
     - "DB_USERNAME" with your own superuser name
     - "DB_PASSWORD" with your own superuser password
    
@@ -21,7 +25,11 @@ Files to modify :
   2. Change its working directory to [`. (root)`](.), in the project.
   3. Run the command :
      ```
+<<<<<<< HEAD
        docker compose up --build
+=======
+     docker compose up --build
+>>>>>>> a99e1122646bb53c4f86ee423ec21ae9a453acf5
      ```
   4. Wait for the containers to be created.
 

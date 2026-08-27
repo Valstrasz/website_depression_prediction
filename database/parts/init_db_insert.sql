@@ -20,6 +20,7 @@ INSERT INTO prediction
         dietary_habits, degree, history_thoughts_suicidal, profession_hour_daily, financial_stress, history_family_illness_mental,
         depression, confidence)
     VALUES
+<<<<<<< HEAD
     ('2026/01/15', 'Female', 100, 'Pripyat', 8.0, 'Student', 2.0, 4.0, '5-6 hours',
         'Healthy', 'MD', true, 5, 1, false,
         true, 87.5),
@@ -50,3 +51,14 @@ INSERT INTO prediction
     ('2026/08/24', 'Female', 46, 'Tchernobyl', 10.0, 'Student', 1.0, 1.0, '5-6 hours',
         'Moderate', 'M.Tech', true, 7, 2, true,
         true, 100.00);
+=======
+    ('2026/08/15', 'Female', 777, 'AAA', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
+        'Moderate', 'BSc', true, 7, 5, false,
+        true, 87.5),
+    ('2026/08/15', 'Male', 159, 'ABC', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
+        'Moderate', 'BSc', true, 7, 5, false,
+        true, 77.77),
+    ('2026/08/15', 'Female', 3615, 'ZUGZUG', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
+        'Moderate', 'BSc', true, 7, 5, false,
+        false, 100.00);
+>>>>>>> a99e1122646bb53c4f86ee423ec21ae9a453acf5
