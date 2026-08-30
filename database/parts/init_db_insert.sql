@@ -4,14 +4,14 @@ INSERT INTO sample
         dietary_habits, degree, history_thoughts_suicidal, profession_hour_daily, financial_stress, history_family_illness_mental,
         depression)
     VALUES
-    ('2026/08/15', 'Female', 40, 'Nowhere', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
-        'Moderate', 'BSc', true, 7, 5, false,
+    ('2026/08/15', 'Male', 33, 'Visakhapatnam', 8.97, 'Student', 5, 2, '5-6 hours',
+        'Healthy', 'B.Pharm', true, 3, 1, false,
         true),
-    ('2026/08/15', 'Male', 42, 'Nowhere', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
-        'Moderate', 'BSc', true, 7, 5, false,
-        true),
-    ('2026/08/15', 'Female', 25, 'Somewhere', 7.0, 'Student', 3.0, 1.0, '5-6 hours',
-        'Moderate', 'BSc', true, 7, 5, false,
+    ('2026/08/15', 'Female', 24, 'Bangalore', 5.9, 'Student', 2, 5, '5-6 hours',
+        'Moderate', 'BSc', false, 3, 2, true,
+        false),
+    ('2026/08/15', 'Male', 31, 'Srinagar', 7.03, 'Student', 3, 5, 'Less than 5 hours',
+        'Healthy', 'BA', false, 9, 1, true,
         false);
 
 
