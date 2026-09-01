@@ -11,8 +11,7 @@ Softwares to install :
 
 ## **Setup**
 Files to modify :
-- In [`. (root)`](.):
-  - In [`.env_TEMPLATE`](.env_TEMPLATE), replace :
+  - Copy [`.env_TEMPLATE`](.env_TEMPLATE), rename it `.env` and replace :
     - "DB_USERNAME" with your own superuser name
     - "DB_PASSWORD" with your own superuser password
    

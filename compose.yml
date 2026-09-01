@@ -33,6 +33,7 @@ services:
         build: ./website/backend
         volumes:
             - ./website/backend:/app_website
+            - backend_module:/app_website/node_modules 
         ports:
             - "5000:5000"
         depends_on:
@@ -79,4 +80,5 @@ services:
 
 volumes:
     postgres_data:
+    backend_module:
     frontend_module:

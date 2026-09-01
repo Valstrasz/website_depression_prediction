@@ -2,6 +2,8 @@
 -- CREATE USER ${DB_USERNAME} WITH PASSWORD ${DB_PASSWORD};
 -- GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} to ${DB_USERNAME};
 
+
+
 \set subdir_parts ./parts
 
 -- TYPE creation
