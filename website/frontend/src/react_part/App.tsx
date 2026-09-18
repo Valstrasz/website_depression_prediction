@@ -62,7 +62,14 @@ function App() {
 
 
 
-    const apiAiPredictorPost = async (data_to_predict: any) => {
+    async function apiAiPredictorPost(
+        {
+            data_to_predict
+        } : {
+            data_to_predict: any
+        })
+        : Promise<any>
+    {
         const ai_api_post_predictor: string = `${import.meta.env.VITE_AI_HOST}:${import.meta.env.VITE_AI_PORT}${import.meta.env.VITE_AI_API_POST_PREDICT}`;
         
         
@@ -97,7 +104,16 @@ function App() {
 
 
 
-    const createEntry = async (entry_new: any, callback_setEntryCreated: any) => {
+    async function createEntry(
+        {
+            entry_new,
+            callback_setEntryCreated
+        } : {
+            entry_new: any,
+            callback_setEntryCreated: any
+        })
+        : Promise<any>
+    {
         // TEMP
         // data = dict_databaseEntry
         // TEMP
@@ -114,7 +130,14 @@ function App() {
 
 
 
-    const fetchEntry = async (entry_id: number) => {
+    async function fetchEntry(
+        {
+            entry_id
+        } : {
+            entry_id: number
+        })
+        : Promise<any>
+    {
         const result = await axios.get(`${URL_API_DB_PREDICTION}/${entry_id}`);
 
         setEntryFetch(result.data);
@@ -124,8 +147,15 @@ function App() {
 
 
 
-    const apiAiPredictorPost_AND_createEntry = async (data_to_predict: any) => {
-        const prediction_full = await apiAiPredictorPost(data_to_predict);
+    async function apiAiPredictorPost_AND_createEntry(
+        {
+            data_to_predict
+        } : {
+            data_to_predict: any
+        })
+        : Promise<any>
+    {
+        const prediction_full = await apiAiPredictorPost({data_to_predict: data_to_predict});
 
         let prediction = {
             "date": new Date().toISOString(),
@@ -144,7 +174,9 @@ function App() {
 
         // console.log(data_to_insert);
 
-        await createEntry(entry_new, setEntryPredictorCreated);
+        await createEntry({
+            entry_new: entry_new,
+            callback_setEntryCreated: setEntryPredictorCreated});
     };
 
 
@@ -193,7 +225,7 @@ function App() {
                         defaultValue={JSON.stringify(dict_predictorInput, null, "  ")}
                         onChange={(e) => setPredictorInput(JSON.parse(e.target.value))}
                     />
-                    <button className="hover_button" onClick={() => apiAiPredictorPost_AND_createEntry(predictorInput)}>
+                    <button className="hover_button" onClick={() => apiAiPredictorPost_AND_createEntry({data_to_predict: predictorInput})}>
                         Get prediction
                     </button>
                     
@@ -228,7 +260,7 @@ function App() {
                         defaultValue={JSON.stringify(dict_databaseEntry, null, "  ")}
                         onChange={(e) => setEntryToCreate(JSON.parse(e.target.value))}
                     />
-                    <button className="hover_button" onClick={() => createEntry(entryToCreate, setEntryManuallyCreated)}>
+                    <button className="hover_button" onClick={() => createEntry({entry_new: entryToCreate, callback_setEntryCreated: setEntryManuallyCreated})}>
                         Insert entry
                     </button>
                     
@@ -252,7 +284,7 @@ function App() {
                         defaultValue="0"
                         onChange={(e) => setEntryFetch_Id(Number(e.target.value))}
                     />
-                    <button className="hover_button" onClick={() => fetchEntry(entryFetch_Id)}>
+                    <button className="hover_button" onClick={() => fetchEntry({entry_id: entryFetch_Id})}>
                         Fetch entry
                     </button>
                     
